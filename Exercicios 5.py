@@ -77,11 +77,11 @@ def processar_nota_fiscal(itens:list):
 
         total_liquido=bruto_total - impostos_total
 
-        resultado.append({
+        
+    return {
             'total bruto':bruto_total,
                           'total impostos':impostos_total,
-                          'total liquido':total_liquido})
-    return resultado
+                          'total liquido':total_liquido}
 
 
 resultado=processar_nota_fiscal(itens)
