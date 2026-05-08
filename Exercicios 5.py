@@ -81,7 +81,7 @@ def processar_nota_fiscal(itens:list):
             'total bruto':bruto_total,
                           'total impostos':impostos_total,
                           'total liquido':total_liquido})
-        return resultado
+    return resultado
 
 
 resultado=processar_nota_fiscal(itens)
