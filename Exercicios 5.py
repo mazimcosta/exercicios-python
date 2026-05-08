@@ -46,10 +46,10 @@ itens = [
 
 def processar_nota_fiscal(itens:list):
     resultado=[]
-    
+    impostos_total=0
+    bruto_total=0
     for item in itens:
-        impostos_total=0
-        bruto_total=0
+        
         try:
             item['qtd']=float(item['qtd'])
             item['preco']=float(item['preco'])
@@ -59,7 +59,7 @@ def processar_nota_fiscal(itens:list):
         total_bruto=round(item['qtd']*item['preco'],2)   
         bruto_total+=total_bruto 
         
-        if item['categoria'].lower()=='eletronicos':
+        if item['categoria'].lower()=='eletrônicos':
             total_impostos=round(total_bruto * 0.15,2)
             impostos_total+=total_impostos
        
@@ -67,7 +67,7 @@ def processar_nota_fiscal(itens:list):
             total_impostos=round(total_bruto *0.07,2)
             impostos_total+=total_impostos
         
-        elif item['categoria'].lower()=='vestuario':
+        elif item['categoria'].lower()=='vestuário':
             total_impostos=round(total_bruto *0.12,2)
             impostos_total+=total_impostos
        
@@ -81,6 +81,7 @@ def processar_nota_fiscal(itens:list):
             'total bruto':bruto_total,
                           'total impostos':impostos_total,
                           'total liquido':total_liquido})
+        return resultado
 
 
 resultado=processar_nota_fiscal(itens)
