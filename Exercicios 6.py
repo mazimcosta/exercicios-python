@@ -24,56 +24,6 @@ RESTRIÇÕES:
 """
 
 # =========================
-# TESTES — FONTE "arquivo"
-# =========================
-
-("arquivo", "linha 1\nlinha 2\nlinha 3")
-
-("arquivo", None)
-
-("arquivo", 12345)
-
-
-# =========================
-# TESTES — FONTE "numero"
-# =========================
-
-("numero", "25")
-
-("numero", "abc")
-
-("numero", "-9")
-
-("numero", None)
-
-
-# =========================
-# TESTES — FONTE "lista"
-# =========================
-
-("lista", [10, 20, 30])
-
-("lista", [])
-
-("lista", None)
-
-("lista", "python")
-
-
-# =============================
-# TESTES — FONTE "dicionario"
-# =============================
-
-("dicionario", {"valor": 150})
-
-("dicionario", {"preco": 100})
-
-("dicionario", {})
-
-("dicionario", None)
-
-
-# =========================
 # TODOS OS TESTES JUNTOS
 # =========================
 
