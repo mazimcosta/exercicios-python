@@ -78,4 +78,4 @@ def processar_nota_fiscal(itens:list):
 
 resultado=processar_nota_fiscal(itens)
 
-    
+#Exercicio resolvido!!
