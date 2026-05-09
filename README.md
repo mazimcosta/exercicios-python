@@ -84,3 +84,6 @@ git push -u origin main
 
 # Alterando o nome de uma branch no repositorio remoto:
 # git branch -m nome novo nome
+
+# Verificando as  diferenças de duas branches:
+# com git diff branch nome da outra branch
