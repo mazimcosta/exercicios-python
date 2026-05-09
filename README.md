@@ -78,3 +78,6 @@ git push -u origin main
 # - Use branches para novas features
 # - Sempre faça git pull antes de começar
 # - Evite usar --hard sem entender
+
+# Incluindo uma pasta vazia no repositorio:
+# Devemos incluir o arquivo .gitkeep em cada pasta
