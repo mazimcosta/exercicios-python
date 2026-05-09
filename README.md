@@ -81,3 +81,6 @@ git push -u origin main
 
 # Incluindo uma pasta vazia no repositorio:
 # Devemos incluir o arquivo .gitkeep em cada pasta
+
+# Alterando o nome de uma branch no repositorio remoto:
+# git branch -m nome novo nome
