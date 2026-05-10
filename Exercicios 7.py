@@ -32,45 +32,42 @@ RESTRIÇÕES:
 - try/except em cancelar_senha e posicao_na_fila
 """
 # SUA SOLUÇÃO:
-def entrar_fila(lista:list,cliente:str,preferencial:bool):
+def entrar_fila(fila:list,cliente:str,preferencial:bool):
     lista=[]
     if preferencial==True:
-        lista.insert(0,cliente)
+        fila.insert(0,cliente)
     else:
-        lista.insert(-1,cliente)
+        fila.append(cliente)
     
-    return lista
+    return fila
     
 
 def chamar_proximo(fila:list):
-    try:
-        proximo=fila[0]
-        fila.pop(0)
-        return f' ultimo chamado: {proximo}'
-    except IndexError:
-        return f' fIla vazia.'
+    if not fila:
+        return 'a fila esta vazia'
+    return fila.pop(0)
     
 
 def cancelar_senha(fila,cliente):
     if cliente in fila:
         fila.remove(cliente)
+        return True
     else:
-        return (cliente in fila)    
-    return True
+        return False
 
 
 def posicao_na_fila(fila:list,cliente):
     try:
         posicao=fila.index(cliente)
-    except :
+    except  ValueError:
         return -1
-    return f'posicao  do {cliente} e {posicao}'
+    return f' posicao :{posicao +1}'
 
 def status_fila(fila:list):
     try:
       status={'total':len(fila),'primeiro da fila':fila[0],'ultimo da fila':fila[-1]}
-    except:
-        return f' a fila esta vazia'
+    except IndexError:
+        return {'total':0,'primeiro da fila':None,'ultimo da fila':None}
     return status
 
 
