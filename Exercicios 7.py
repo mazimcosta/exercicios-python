@@ -40,3 +40,38 @@ def entrar_fila(lista:list,cliente:str,preferencial:bool):
         lista.insert(-1,cliente)
     
     return lista
+    
+
+def chamar_proximo(fila:list):
+    try:
+        proximo=fila[0]
+        fila.pop(0)
+        return f' ultimo chamado: {proximo}'
+    except IndexError:
+        return f' fIla vazia.'
+    
+
+def cancelar_senha(fila,cliente):
+    if cliente in fila:
+        fila.remove(cliente)
+    else:
+        return (cliente in fila)    
+    return True
+
+
+def posicao_na_fila(fila:list,cliente):
+    try:
+        posicao=fila.index(cliente)
+    except :
+        return -1
+    return f'posicao  do {cliente} e {posicao}'
+
+def status_fila(fila:list):
+    try:
+      status={'total':len(fila),'primeiro da fila':fila[0],'ultimo da fila':fila[-1]}
+    except:
+        return f' a fila esta vazia'
+    return status
+
+
+        
