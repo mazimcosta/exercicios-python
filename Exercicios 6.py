@@ -49,37 +49,39 @@ def importar_dado(fonte:str,dado:any):
     
     linhas=0
     if fonte=='arquivo':
-        dado=str(dado)
+        
         if dado is None:
-            return{'sucess':False,'motivo':'valor invalido'}
+            return{'sucesso':False,'resultado':None,'erro':'Valor invalido.'}
+        dado=str(dado)
         linhas+=dado.count('\n')
-        return {'sucess':True,'resultado':linhas}
+        return {'sucesso':True,'resultado':linhas,'erro':None}
     
     if fonte=='numero':
         try:
             dado=float(dado)
         except ValueError:
-            return {'sucess':False,'motivo':'valor invaido'}
+            return {'sucesso':False,'resultado':None,'erro':'Valor invalido.'}
         
         try:
             raiz=math.sqrt(dado)
         except ValueError:
-            return {'sucess':False,'motivo':'raiz inexistente'}
+            return {'sucesso':False,'resultado':None,'erro':'Valor invalido.'}
         
-        return {'sucess':True,'resultado':round(raiz,2)}
+        return {'sucesso':True,'resultado':round(raiz,2),'erro':None}
 
     if fonte=='lista':
         try:
             indice=dado[0]
         except IndexError:
-            return {'sucess':False,'motivo':'Valor não pode ser acessado'}
-        return {'sucess':True,'resultado':indice}
+            return {'sucesso':False,'resultado':None,'erro':'Valor invalido.'}
+        return {'sucesso':True,'resultado':indice,'erro':None}
     
     if fonte=='dicionario':
-        if not dado.get['valor','preco']:
-            return {'sucess':False,'motivo':'valor ou preco invaido'}
-        else:
-            return {'sucess':True,'resultado':dado.get['valor','preco']}
+        try:
+            dado['valor']
+        except KeyError:
+            return{'sucesso':False,'resultado':None,'erro':'Valor invalido.'}
+        return{'sucesso':True,'resultado':dado['valor'],'erro':None}
 
 resultado_final={}
 for fonte,dado in testes:
