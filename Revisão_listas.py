@@ -15,6 +15,9 @@ usuarios = {
 """
 Retorne uma lista com os nomes de usuários que têm saldo maior que 0.
 """
+lista=[{'nome':usuario['nome']} for usuario in usuarios.values() if usuario['saldo']>0]
+
+
 
 
 # --------------------------------------
@@ -30,6 +33,12 @@ Regras:
 - retorna True se conseguiu
 - retorna False caso contrário
 """
+def sacar(usuarios,codigo,valor):
+    if codigo in usuarios:
+        if usuarios[codigo]['saldo']>=valor:
+            usuarios[codigo]['saldo']-=valor
+        return True
+    return False
 
 
 # --------------------------------------
@@ -44,6 +53,22 @@ Regras:
 - retorna o novo saldo
 - se não existir, retorna -1
 """
+def depositar(usuarios,codigo,valor):
+    if valor<0:
+        return f'Valor invalido'
+    if usuarios.get(codigo) is not None:
+        usuarios[codigo]['saldo']+=valor
+        return f"novo saldo: {usuarios[codigo]['saldo']}"
+    return -1
+
+
+
+
+
+
+
+
+
 
 
 # --------------------------------------
@@ -52,6 +77,18 @@ Regras:
 """
 Retorne o saldo TOTAL de todos os usuários ativos.
 """
+def calcular_total(usuarios,total):
+    total=0
+    for usuario in usuarios.values():
+        if usuario['ativo']==True:
+            total+=usuario['saldo']
+
+        return f'saldo total: {total:.2f}'
+
+
+
+
+
 
 
 # --------------------------------------
@@ -64,6 +101,19 @@ Regras:
 - todo usuário com saldo 0 deve ficar com ativo = False
 - não retornar nada (apenas modificar o dicionário)
 """
+def desativar_usuarios_zerados(usuarios):
+    for usuario in usuarios.values():
+        if usuario['saldo']==0:
+            usuario['ativo']=False
+    
+    return 
+
+
+
+
+
+
+
 
 
 # --------------------------------------
