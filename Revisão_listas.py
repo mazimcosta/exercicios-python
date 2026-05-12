@@ -1,187 +1,108 @@
-# ================================
-# EXERCÍCIOS - LISTAS E DICIONÁRIOS
-# ================================
+# ======================================
+# EXERCÍCIOS - NÍVEL INTERMEDIÁRIO
+# ======================================
 
-
-
-
-# --------------------------------
-# EXERCÍCIO 1
-# --------------------------------
-"""
-Percorra o dicionário 'dados' e imprima:
-- o código (chave)
-- o nome
-- a idade
-
-Saída esperada (exemplo):
-1 João 25
-2 Maria 30
-3 Pedro 20
-"""
-dados = {
-    "1": {"nome": "João", "idade": 25, "ativo": True},
-    "2": {"nome": "Maria", "idade": 30, "ativo": False},
-    "3": {"nome": "Pedro", "idade": 20, "ativo": True}
+usuarios = {
+    "u1": {"nome": "Ana", "idade": 22, "saldo": 150.0, "ativo": True},
+    "u2": {"nome": "Bruno", "idade": 35, "saldo": 0.0, "ativo": False},
+    "u3": {"nome": "Carlos", "idade": 28, "saldo": 300.0, "ativo": True},
 }
 
 
-for codigo,dados in dados.items():
-    print(codigo,dados['nome'],dados['idade'],sep='\n')
+# --------------------------------------
+# EXERCÍCIO 1
+# --------------------------------------
+"""
+Retorne uma lista com os nomes de usuários que têm saldo maior que 0.
+"""
 
 
-
-
-
-
-
-
-# --------------------------------
+# --------------------------------------
 # EXERCÍCIO 2
-# --------------------------------
+# --------------------------------------
 """
-Crie uma função chamada buscar_pessoa(dados, codigo)
+Crie uma função sacar(usuarios, codigo, valor)
 
-Ela deve:
-- retornar o dicionário da pessoa se existir
-- retornar {} se não existir
-
-Use .get()
-
+Regras:
+- só pode sacar se o usuário existir
+- só pode sacar se saldo >= valor
+- diminui o saldo
+- retorna True se conseguiu
+- retorna False caso contrário
 """
-def buscar_pessoas(dados,codigo):
-
-    item=dados.get(codigo)
-    if item is not None:
-        return dados[codigo]
-    return {}
 
 
-
-
-
-
-
-
-# --------------------------------
+# --------------------------------------
 # EXERCÍCIO 3
-# --------------------------------
+# --------------------------------------
 """
-Crie uma função chamada pessoa_existe(dados, codigo)
+Crie uma função depositar(usuarios, codigo, valor)
 
-Ela deve:
-- retornar True se o código existir
-- retornar False caso contrário
-
-Use 'in' (não use .get aqui)
+Regras:
+- só deposita se o usuário existir
+- soma o valor ao saldo
+- retorna o novo saldo
+- se não existir, retorna -1
 """
-def  pessoa_existe(dados,codigo):
-    if codigo in dados:
-        return True
-    return False
 
-# --------------------------------
+
+# --------------------------------------
 # EXERCÍCIO 4
-# --------------------------------
+# --------------------------------------
 """
-Crie uma função chamada atualizar_idade(dados, codigo, nova_idade)
-
-Ela deve:
-- atualizar a idade da pessoa
-- retornar True se conseguiu atualizar
-- retornar False se o código não existir
+Retorne o saldo TOTAL de todos os usuários ativos.
 """
-def atualizar_idade(dados,codigo,nova_idade):
-    try:
-        dados[codigo]['idade']=int(nova_idade)
-        return True
-    except(KeyError,ValueError):
-        return False
 
 
-
-
-
-
-
-# --------------------------------
+# --------------------------------------
 # EXERCÍCIO 5
-# --------------------------------
+# --------------------------------------
 """
-Crie uma função chamada remover_pessoa(dados, codigo)
+Crie uma função desativar_usuarios_zerados(usuarios)
 
-Ela deve:
-- remover a pessoa do dicionário
-- retornar True se removeu
-- retornar False se o código não existir
+Regras:
+- todo usuário com saldo 0 deve ficar com ativo = False
+- não retornar nada (apenas modificar o dicionário)
 """
 
 
-# --------------------------------
+# --------------------------------------
 # EXERCÍCIO 6
-# --------------------------------
+# --------------------------------------
 """
-Calcule a média de idade das pessoas.
+Crie uma função buscar_usuarios_por_idade(usuarios, idade_min)
 
-Dica:
-- percorra usando .values()
-- use um acumulador (soma)
+Retorne uma lista de usuários com idade >= idade_min
+(retorne o dicionário completo de cada um)
 """
 
 
-# --------------------------------
+# --------------------------------------
 # EXERCÍCIO 7
-# --------------------------------
+# --------------------------------------
 """
-Crie uma função chamada listar_ativos(dados)
+Crie uma função transferir(usuarios, origem, destino, valor)
 
-Ela deve:
-- retornar uma lista com os nomes das pessoas que estão ativas (ativo = True)
-
-Exemplo de saída:
-["João", "Pedro"]
-"""
-
-
-# --------------------------------
-# EXERCÍCIO 8
-# --------------------------------
-"""
-Crie uma função chamada contar_inativos(dados)
-
-Ela deve:
-- contar quantas pessoas estão com ativo = False
-- retornar esse número
+Regras:
+- ambos devem existir
+- origem precisa ter saldo suficiente
+- debita de um e adiciona no outro
+- retorna True se sucesso
+- False caso contrário
 """
 
 
-# --------------------------------
-# EXERCÍCIO 9
-# --------------------------------
+# --------------------------------------
+# EXERCÍCIO 8 (DESAFIO REAL)
+# --------------------------------------
 """
-Crie uma função chamada alternar_status(dados, codigo)
+Crie uma função usuario_mais_rico(usuarios)
 
-Ela deve:
-- inverter o status 'ativo' (True vira False, False vira True)
-- retornar True se conseguiu
-- retornar False se o código não existir
+Retorne:
+{
+    "codigo": "...",
+    "dados": {...}
+}
+
+Se estiver vazio, retorne {}
 """
-
-
-# --------------------------------
-# EXERCÍCIO 10 (DESAFIO)
-# --------------------------------
-"""
-Crie uma função chamada adicionar_pessoa(dados, codigo, nome, idade)
-
-Ela deve:
-- adicionar uma nova pessoa no dicionário
-- não permitir códigos duplicados
-- retornar True se adicionou
-- retornar False se o código já existir
-"""
-
-
-# ================================
-# FIM DOS EXERCÍCIOS
-# ================================
