@@ -2,11 +2,7 @@
 # EXERCÍCIOS - LISTAS E DICIONÁRIOS
 # ================================
 
-dados = {
-    "1": {"nome": "João", "idade": 25, "ativo": True},
-    "2": {"nome": "Maria", "idade": 30, "ativo": False},
-    "3": {"nome": "Pedro", "idade": 20, "ativo": True}
-}
+
 
 
 # --------------------------------
@@ -23,6 +19,21 @@ Saída esperada (exemplo):
 2 Maria 30
 3 Pedro 20
 """
+dados = {
+    "1": {"nome": "João", "idade": 25, "ativo": True},
+    "2": {"nome": "Maria", "idade": 30, "ativo": False},
+    "3": {"nome": "Pedro", "idade": 20, "ativo": True}
+}
+
+
+for codigo,dados in dados.items():
+    print(codigo,dados['nome'],dados['idade'],sep='\n')
+
+
+
+
+
+
 
 
 # --------------------------------
@@ -36,7 +47,20 @@ Ela deve:
 - retornar {} se não existir
 
 Use .get()
+
 """
+def buscar_pessoas(dados,codigo):
+
+    item=dados.get(codigo)
+    if item is not None:
+        return dados[codigo]
+    return {}
+
+
+
+
+
+
 
 
 # --------------------------------
@@ -51,7 +75,10 @@ Ela deve:
 
 Use 'in' (não use .get aqui)
 """
-
+def  pessoa_existe(dados,codigo):
+    if codigo in dados:
+        return True
+    return False
 
 # --------------------------------
 # EXERCÍCIO 4
@@ -64,6 +91,17 @@ Ela deve:
 - retornar True se conseguiu atualizar
 - retornar False se o código não existir
 """
+def atualizar_idade(dados,codigo,nova_idade):
+    try:
+        dados[codigo]['idade']=int(nova_idade)
+        return True
+    except(KeyError,ValueError):
+        return False
+
+
+
+
+
 
 
 # --------------------------------
