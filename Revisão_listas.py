@@ -17,11 +17,8 @@ Crie uma função buscar_usuarios_por_idade(usuarios, idade_min)
 Retorne uma lista de usuários com idade >= idade_min
 (retorne o dicionário completo de cada um)
 """
-def buscar_usuarios_por_idade(usuarios,idade_min):
-    lista=[{codigo,dados}for codigo,dados in usuarios.items() if dados['idade']>=idade_min]
-
-    return lista
-
+def buscar_usuarios_por_idade(usuarios, idade_min):
+    return [dados for dados in usuarios.values() if dados['idade'] >= idade_min]
 
 
 
@@ -73,9 +70,12 @@ Retorne:
 Se estiver vazio, retorne {}
 """
 def usuario_mais_rico(usuarios):
-    lista=list()
-    lista=[{codigo,dados} for codigo,dados in usuarios.items()]
-    lista=lista.sort(key= lambda item:item['saldo'])
+    if not usuarios:
+        return {}
 
-    return{'codigo':lista[-1][0],
-           'dados':lista[-1][1]}
+    codigo = max(usuarios, key=lambda k: usuarios[k]['saldo'])
+
+    return {
+        'codigo': codigo,
+        'dados': usuarios[codigo]
+    }
