@@ -7,42 +7,8 @@ usuarios = {
     "u2": {"nome": "Bruno", "idade": 35, "saldo": 0.0, "ativo": False},
     "u3": {"nome": "Carlos", "idade": 28, "saldo": 300.0, "ativo": True},
 }
-
-# --------------------------------------
-# EXERCÍCIO 6
-# --------------------------------------
-"""
-Crie uma função buscar_usuarios_por_idade(usuarios, idade_min)
-
-Retorne uma lista de usuários com idade >= idade_min
-(retorne o dicionário completo de cada um)
-"""
-def buscar_usuarios_por_idade(usuarios, idade_min):
-    return [dados for dados in usuarios.values() if dados['idade'] >= idade_min]
-
-
-
-
-# --------------------------------------
-# EXERCÍCIO 7
-# --------------------------------------
-"""
-Crie uma função transferir(usuarios, origem, destino, valor)
-
-Regras:
-- ambos devem existir
-- origem precisa ter saldo suficiente
-- debita de um e adiciona no outro
-- retorna True se sucesso
-- False caso contrário
-"""
-def transferir(usuarios,origem,destino,valor):
-    # Assumindo que origem e destino são chaves:
-    if origem in usuarios and destino in usuarios and usuarios[origem]['saldo']>=valor:
-        usuarios[origem]['saldo']-=valor
-        usuarios[destino]['saldo']+=valor
-        return True
-    return False
+# EXERCÍCIO 12
+"Crie uma função que retorna o saldo total de todos os usuários ativos."
 
 
 
@@ -51,31 +17,23 @@ def transferir(usuarios,origem,destino,valor):
 
 
 
+# EXERCÍCIO 13
+"Crie uma função que retorna o usuário mais jovem."
 
 
 
 
-# --------------------------------------
-# EXERCÍCIO 8 (DESAFIO REAL)
-# --------------------------------------
-"""
-Crie uma função usuario_mais_rico(usuarios)
 
-Retorne:
-{
-    "codigo": "...",
-    "dados": {...}
-}
 
-Se estiver vazio, retorne {}
-"""
-def usuario_mais_rico(usuarios):
-    if not usuarios:
-        return {}
+# EXERCÍCIO 14
+"Crie uma função que desativa usuários com saldo zero."
 
-    codigo = max(usuarios, key=lambda k: usuarios[k]['saldo'])
 
-    return {
-        'codigo': codigo,
-        'dados': usuarios[codigo]
-    }
+
+
+
+
+
+
+# EXERCÍCIO 15 (DESAFIO)
+"Crie uma função que retorna uma lista ordenada de usuários por saldo (do maior para o menor)."
