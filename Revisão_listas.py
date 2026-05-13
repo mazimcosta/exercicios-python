@@ -10,14 +10,13 @@ usuarios = {
 # EXERCÍCIO 12
 "Crie uma função que retorna o saldo total de todos os usuários ativos."
 
-def calcular_saldo_total(usuarios,codigo):
+def calcular_saldo(usuarios):
     saldo_total=0
-    for codigo in usuarios:
-        if usuarios[codigo]['ativo']==True:
-            saldo_total+=usuarios[codigo]['saldo']
-        
-    return  saldo_total
-
+    for dados in usuarios.values():
+        if dados['ativo']:
+            saldo_total+=dados['saldo']
+    
+    return saldo_total
 
 
 
@@ -67,6 +66,11 @@ def desativar_usuarios(usuarios):
 "Crie uma função que retorna uma lista ordenada de usuários por saldo (do maior para o menor)."
 
 def ordenar_usuarios(usuarios):
-    lista=list()
-    lista=lista.sort(usuarios, key= lambda k:usuarios[k]['saldo'], reverse=True)
-    return lista
+    return sorted(usuarios.items(), key= lambda item:item[1]['saldo'], reverse=True)
+
+    "Crie uma função que retorna apenas os usuários ativos ordenados por saldo"
+
+    def ordenar_ativos(usuarios):
+        for dados in usuarios.values:
+            if dados['ativo']:
+                return sorted(dados, key= lambda k:k['saldo'])
