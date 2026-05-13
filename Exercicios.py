@@ -1,45 +1,4 @@
 # =============================================================================
-# EXERCÍCIO 10 | Funções com argumentos variados
-# Nível: Médio | Contexto: Gerador de relatórios
-# Status: [ ] Pendente | [ ] Enviado | [ ] Revisado | [ ] Corrigido
-# =============================================================================
-"""
-CONTEXTO:
-Sistema de geração de relatórios flexível onde
-os parâmetros variam conforme o tipo de relatório.
-
-TAREFA:
-Crie a função gerar_relatorio(titulo: str,
-                               *dados,
-                               separador: str = "-",
-                               largura: int = 40,
-                               **configuracoes) -> str que:
-- Gere um relatório formatado como string
-- *dados: linhas de conteúdo do relatório
-- separador e largura: formatação do cabeçalho
-- **configuracoes: metadados extras (autor, data, versao etc)
-
-SAÍDA ESPERADA:
-========================================
-RELATÓRIO DE VENDAS
-========================================
-Total: R$ 15.000,00
-Vendedor: Carlos
-Meta atingida: True
-----------------------------------------
-Autor: Ana
-Data: 2024-03-01
-========================================
-
-RESTRIÇÕES:
-- *args e **kwargs obrigatórios
-- f-strings para formatação
-- Sem bibliotecas externas
-"""
-# SUA SOLUÇÃO:
-
-
-# =============================================================================
 # EXERCÍCIO 11 | Classe básica
 # Nível: Médio | Contexto: Sistema de produto
 # Status: [ ] Pendente | [ ] Enviado | [ ] Revisado | [ ] Corrigido
