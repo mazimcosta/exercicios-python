@@ -99,3 +99,121 @@ Criar um menu simples com input:
 OBJETIVO FINAL:
 Construir um sistema funcional simples, organizado e próximo do mundo real.
 """
+
+# ================================
+# 🛒 MINI PROJETO: SISTEMA DE CARRINHO
+# ================================
+
+# 🎯 OBJETIVO:
+# Criar um sistema simples de loja com:
+# - Produtos
+# - Carrinho de compras
+# - Controle de estoque
+# - Cálculo de total
+
+
+# =====================================
+# 📦 PARTE 1 — CLASSE PRODUTO
+# =====================================
+
+# Crie uma classe Produto com os seguintes requisitos:
+
+# Atributos:
+# - codigo (str)
+# - nome (str)
+# - preco (float) → usar @property com validação (não pode ser negativo)
+# - estoque (int) → usar validação (não pode ser negativo)
+
+# Métodos:
+# - aplicar_desconto(percentual: float)
+#     → reduz o preço com base no percentual
+
+# - adicionar_estoque(qtd: int)
+#     → aumenta o estoque
+
+# - remover_estoque(qtd: int)
+#     → diminui o estoque
+#     → levantar erro se não houver estoque suficiente
+
+# - esta_disponivel() -> bool
+#     → retorna True se estoque > 0
+
+# - valor_em_estoque() -> float
+#     → retorna preco * estoque
+
+# - __str__()
+#     → representação amigável do produto
+
+# - __repr__()
+#     → representação técnica
+
+
+# =====================================
+# 🛒 PARTE 2 — CLASSE CARRINHO
+# =====================================
+
+# Crie uma classe Carrinho com:
+
+# Atributos:
+# - itens (lista de produtos)
+
+# Métodos:
+
+# - adicionar(produto)
+#     → adiciona produto ao carrinho
+#     → só adiciona se houver estoque
+#     → deve remover 1 unidade do estoque
+
+# - remover(codigo)
+#     → remove produto do carrinho pelo código
+
+# - listar()
+#     → mostra todos os produtos do carrinho
+
+# - total()
+#     → retorna o valor total da compra
+
+# - finalizar_compra()
+#     → mostra o total final
+#     → limpa o carrinho
+
+
+# =====================================
+# 🧪 PARTE 3 — TESTE DO SISTEMA
+# =====================================
+
+# Crie alguns produtos manualmente, exemplo:
+# - arroz
+# - macarrão
+# - leite
+
+# Depois:
+
+# 1. Crie um carrinho
+# 2. Adicione produtos
+# 3. Liste os itens
+# 4. Mostre o total
+# 5. Finalize a compra
+
+
+# =====================================
+# 🔥 DESAFIOS EXTRAS (OPCIONAL)
+# =====================================
+
+# - Não permitir adicionar produto sem estoque
+# - Mostrar mensagem ao tentar remover produto inexistente
+# - Aplicar desconto em todos os produtos do carrinho
+# - Mostrar quantidade de itens no carrinho
+
+
+# =====================================
+# 🚀 OBJETIVO FINAL
+# =====================================
+
+# Quando terminar, seu sistema deve:
+# - Controlar estoque corretamente
+# - Calcular valores corretamente
+# - Usar bem classes e métodos
+# - Estar organizado e legível
+
+# 👉 Depois me manda que eu reviso como se fosse código profissional.
