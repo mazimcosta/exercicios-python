@@ -26,7 +26,8 @@ class Produto:
     def aplicar_desconto(self,percentual:float):
         if percentual>100:
             raise ValueError(' O percentual não pode ser superior a 100%')
-        self._preco=round((self._preco * percentual)/100,2)
+        desconto=self._preco * percentual/100
+        self._preco=round(self._preco - desconto,2)
 
     def adicionar_estoque(self,qtd:int):
         if qtd<0:
