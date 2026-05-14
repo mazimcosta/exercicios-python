@@ -87,3 +87,6 @@ git push -u origin main
 
 # Verificando as  diferenças de duas branches:
 # com git diff branch nome da outra branch
+
+# Alterando o nome de uma pasta:
+# git mv nome, novo nome
