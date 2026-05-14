@@ -17,9 +17,9 @@ def valor_total_estoque(produtos):
     return valor
 
 def desconto_geral(produtos,percentual):
-            desconto=produto._preco * percentual/100
             for produto in produtos:
-                  produto._preco=round(produto._preco - desconto,2)
+                  produto.aplicar_desconto(percentual)
+            return produtos
 
 def buscar_produto(produtos,nome):
       for produto in produtos:
@@ -28,10 +28,9 @@ def buscar_produto(produtos,nome):
 
 def vender_produto(produtos,codigo,quantidade):
       for produto in produtos:
-            if produto.codigo!=codigo:
-                  raise ValueError('Erro: produto inexistente')
-            elif produto.estoque<quantidade:
-                  raise ValueError('Erro: estoque insuficiente')
-            else:
-                  produto.estoque-=quantidade
-                  return f'produto {produto.nome} vendido.'
+           if produto.codigo==codigo and quantidade<0:
+                 raise ValueError('Erro: quantidade não pode ser negativa.')
+           elif produto.codigo==codigo and quantidade>produto.estoque:
+                 raise ValueError('Erro: Estoque insuficiente')
+           else:
+                 raise ValueError('Erro: codigo inexistente')

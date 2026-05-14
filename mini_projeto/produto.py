@@ -14,6 +14,14 @@
 # - preco e estoque não podem ser negativos
 #- usar @property para preco (com validação).
 
+# Se você corrigir só isso, seu código sobe MUITO de nível:
+
+# ✅ Criar @property preco
+# ✅ Corrigir remover_estoque
+# ✅ Corrigir desconto_geral
+# ✅ Corrigir vender_produto
+# ✅ Parar de usar _preco fora da classe
+
 
 class Produto:
 
@@ -22,6 +30,23 @@ class Produto:
         self.nome=nome
         self._preco=preco
         self.estoque=estoque
+
+    
+    @property
+    def preco(self):
+        return self._preco
+
+
+    @preco.setter
+    def preco(self,valor):
+        if valor<0:
+            raise ValueError('Erro: preco não pode ser negativo')
+        self.preco=valor
+
+
+
+
+
 
     def aplicar_desconto(self,percentual:float):
         if percentual>100:
@@ -38,6 +63,8 @@ class Produto:
     def remover_estoque(self,qtd:int):
         if qtd<0:
             raise ValueError('O estoque não pode ser negativo')
+        if qtd>self.estoque:
+            raise ValueError('Erro: estoque insuficiene')
         self.estoque-=qtd
 
     def esta_disponivel(self):
