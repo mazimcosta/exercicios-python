@@ -26,3 +26,12 @@ def buscar_produto(produtos,nome):
             if produto.nome==nome:
                   return produto.__dict__
 
+def vender_produto(produtos,codigo,quantidade):
+      for produto in produtos:
+            if produto.codigo!=codigo:
+                  raise ValueError('Erro: produto inexistente')
+            elif produto.estoque<quantidade:
+                  raise ValueError('Erro: estoque insuficiente')
+            else:
+                  produto.estoque-=quantidade
+                  return f'produto {produto.nome} vendido.'
