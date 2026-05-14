@@ -14,6 +14,14 @@ while True:
         vender_produto(produtos,codigo,quantidade)
 
     elif entrada==3:
-        
+        codigo=input('Digite o codigo do produto:')
+        for produto in produtos:
+            if produto.codigo==codigo:
+                produto.aplicar_desconto()
+            else:
+                print('Erro: produto não encontrado')
+
+    elif entrada==4:
+        break        
 
     
