@@ -1,26 +1,31 @@
 # =============================================================================
-# EXERCÍCIO 11 | Classe básica
-# Nível: Médio | Contexto: Sistema de produto
+# EXERCÍCIO 13 | Encapsulamento
+# Nível: Médio-Difícil | Contexto: Conta bancária
 # Status: [ ] Pendente | [ ] Enviado | [ ] Revisado | [ ] Corrigido
 # =============================================================================
 """
 CONTEXTO:
-E-commerce precisa de uma classe para representar produtos.
+Sistema bancário com regras rígidas de acesso aos dados.
 
 TAREFA:
-Crie a classe Produto com:
-- __init__(self, codigo, nome, preco, estoque)
-- aplicar_desconto(percentual: float) → altera o preço
-- adicionar_estoque(qtd: int)
-- remover_estoque(qtd: int) → raise ValueError se insuficiente
-- esta_disponivel() -> bool
-- valor_em_estoque() -> float  (preco * estoque)
-- __str__() → representação legível
-- __repr__() → representação técnica
+Crie a classe ContaBancaria com encapsulamento real:
+- __saldo privado (name mangling)
+- __historico privado
+- titular e agencia públicos
+- @property saldo → só leitura
+- depositar(valor) → valida valor positivo
+- sacar(valor) → valida saldo suficiente
+- transferir(valor, conta_destino: ContaBancaria)
+- extrato() → imprime histórico formatado
+- __str__() → resumo da conta
+
+FORMATO DO HISTÓRICO:
+[2024-03-01 08:22] DEPÓSITO    +R$1.500,00 | Saldo: R$1.500,00
+[2024-03-01 08:23] SAQUE       -R$  200,00 | Saldo: R$1.300,00
 
 RESTRIÇÕES:
-- Validar preco e estoque no __init__ (não negativos)
-- raise ValueError com mensagem clara
-- @property para preco (não permite valor negativo via setter)
+- __saldo nunca acessível diretamente de fora
+- datetime para timestamp
+- raise ValueError com mensagem clara em operações inválidas
 """
 # SUA SOLUÇÃO:
