@@ -1,3 +1,14 @@
+
+# Exercícios a resolver 
+# ---------------+++++++
+#13
+#14
+#18
+#20
+#22
+#25
+
+
 # =============================================================================
 # EXERCÍCIO 11 | Classe básica
 # Nível: Médio | Contexto: Sistema de produto
