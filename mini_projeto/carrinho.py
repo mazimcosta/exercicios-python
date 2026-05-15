@@ -11,12 +11,14 @@ class Carrinho:
         if produto.estoque>0:
             self.itens.append(produto)
             produto.estoque-=1
+            return f' produto adicionado com sucesso.'
         return f'Produto indisponivel.'
     
     def remover_produto(self,codigo):
         for produto in self.itens:
             if produto.codigo==codigo:
                 self.itens.remove(produto)
+                return f' produto removido'
         return f'Produto inexistente.'
     
     def exibir_produtos(self):
@@ -27,10 +29,7 @@ class Carrinho:
 
 
     def exibir_quantidade(self):
-        qtd=0
-        for produto in self.itens:
-            qtd+=produto.estoque
-        return f'quantidade: {qtd}'
+        return f'produtos no carrinho :{len(self.itens)}'
 
 
     def total_compras(self):
