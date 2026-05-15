@@ -1,5 +1,9 @@
 #Cadastrando produtos:
+from datetime import datetime
 from produto import Produto
+
+
+
 
 p1,p2,p3=Produto('124','arroz',5.49,70),Produto('451','macarrao',2.19,100),Produto('147','iogurte',5.79,200)
 
@@ -34,3 +38,16 @@ def vender_produto(produtos,codigo,quantidade):
                  raise ValueError('Erro: Estoque insuficiente')
            else:
                  raise ValueError('Erro: codigo inexistente')
+           
+
+
+def registrar_historico(historico:dict,data,deposito=None,saque=None,transferencia=None,saldo=None):
+      historico={}
+      if deposito:
+            historico.update({data:{'deposito':deposito,'saldo':saldo}})
+            return historico
+      if saque:
+            historico.update({data:{'saque':saque,'saldo':saldo}})
+            return historico
+      if transferencia:
+            historico.update({data:{'transferencia':transferencia,'saldo':saldo}})

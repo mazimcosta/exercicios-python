@@ -41,7 +41,7 @@ class Carrinho:
                 total+=produto.preco
             return total
 
-    def desconto_itens(itens,percentual):
+    def desconto_itens(self,itens,percentual):
       return  desconto_geral(itens,percentual)
 
     def finalizar_compras(self):
