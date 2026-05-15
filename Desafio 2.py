@@ -1,27 +1,18 @@
-# =============================================================================
-# EXERCÍCIO 14 | Sistema de Pedidos
-# Nível: Médio-Difícil | Contexto: E-commerce
-# Status: [ ] Pendente | [ ] Enviado | [ ] Revisado | [ ] Corrigido
-# =============================================================================
+# EXERCICIO 14 | Sistema de Pedidos
+# Nivel: Medio-Dificil | Contexto: E-commerce
 
 """
-CONTEXTO:
-Você precisa modelar um sistema de pedidos de uma loja online.
-
-TAREFA:
-Crie as classes e regras para um sistema de pedidos com:
-
 CLASSES:
 - Produto
 - Cliente
 - Pedido
 
-FUNCIONALIDADES:
-
 Produto:
 - nome
 - preco
 - estoque
+- baixar_estoque()
+- devolver_estoque()
 
 Cliente:
 - nome
@@ -29,48 +20,54 @@ Cliente:
 
 Pedido:
 - cliente
-- lista de produtos
-- status (ex: "criado", "pago", "enviado")
+- produtos
+- status: "criado", "pago", "enviado", "cancelado"
 
 REGRAS:
 
 1. adicionar_produto(produto)
-- Só adiciona se houver estoque
+- So permite se status == "criado"
+- So adiciona se houver estoque
 - Deve diminuir o estoque do produto
+- Estoque nunca pode ficar negativo
 
 2. remover_produto(nome_produto)
-- Remove do pedido
+- So permite se status == "criado"
+- Remove 1 produto pelo nome
+- Deve devolver o produto ao estoque
+- Se produto nao estiver no pedido, raise ValueError
 
 3. calcular_total()
-- Soma todos os preços dos produtos
+- Soma todos os precos dos produtos
 
 4. finalizar_pedido()
-- Só pode finalizar se tiver pelo menos 1 produto
+- So pode finalizar se tiver pelo menos 1 produto
+- So pode finalizar se status == "criado"
 - Muda status para "pago"
 
 5. enviar_pedido()
-- Só pode enviar se estiver "pago"
+- So pode enviar se status == "pago"
 - Muda status para "enviado"
 
 6. cancelar_pedido()
-- Pode cancelar a qualquer momento
-- Deve devolver os produtos ao estoque
-- Status: "cancelado"
+- Pode cancelar se status for "criado" ou "pago"
+- Nao pode cancelar se ja estiver "enviado"
+- Deve devolver todos os produtos ao estoque
+- Muda status para "cancelado"
 
 7. __str__()
-- Retorna resumo do pedido:
+- Retorna:
   Cliente | Quantidade de itens | Total | Status
 
-RESTRIÇÕES:
+RESTRICOES:
+- Validar todas as operacoes com raise ValueError
+- Nao permitir estoque negativo
+- Nao permitir alterar pedido pago, enviado ou cancelado
+- Nao acessar atributos privados de Produto diretamente
+- Usar metodos do Produto para alterar estoque
 
-- Validar todas as operações (raise ValueError)
-- Não permitir ações inválidas:
-  - enviar sem pagar
-  - finalizar sem itens
-- Estoque nunca pode ficar negativo
-
-DESAFIO EXTRA (OPCIONAL):
-
-- Criar histórico de status (tipo log)
+DESAFIO EXTRA:
+- Criar historico de status
 - Usar datetime
 """
+
