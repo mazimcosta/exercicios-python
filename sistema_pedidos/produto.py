@@ -16,4 +16,10 @@ class Produto:
         self.estoque-=quantidade
         return f' Quantidade retirada com sucesso'
     
+    def devolver_estoque(self,quantidade):
+        if quantidade<=0:
+            raise ValueError('Valor invalido')
+        self.estoque+=quantidade
+        return f' Estoque reposto com sucesso'
+    
     
