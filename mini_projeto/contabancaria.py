@@ -33,7 +33,7 @@ from datetime import datetime
 
 class ContaBancaria:
 
-    def __init__(self,titular,agencia,saldo):
+    def __init__(self,titular,agencia,saldo=0):
         
         if saldo<0:
             raise ValueError('Saldo inicial não pode ser negativo')
@@ -46,18 +46,14 @@ class ContaBancaria:
     @property
     def saldo(self):
         return self.__saldo
-    @saldo.setter
-    
-    def saldo(self,valor):
-        self.__saldo=valor
-    
+       
 
-def __registrar_historico(self,tipo,valor):
-    self.__historico.append({
-        'data':datetime.now(),
-        'tipo':tipo,
-        'valor':valor,
-        'saldo':self.__saldo
+    def __registrar_historico(self,tipo,valor):
+             self.__historico.append({
+            'data':datetime.now(),
+             'tipo':tipo,
+             'valor':valor,
+              'saldo':self.__saldo
 
     })
 
@@ -76,5 +72,21 @@ def __registrar_historico(self,tipo,valor):
         if valor<=0:
             raise ValueError('Valor invalido')
         self.__saldo-=valor
-        self.__registrar_historico('saque',valor)
+        self.__registrar_historico('saque',-valor)
         return 'Saque efetuado com sucesso'        
+    
+    def transferir(self,valor,conta_destino):
+         if valor> self.__saldo:
+              raise ValueError('Saldo insuficiente')
+         if valor<=0:
+              raise ValueError('Valor invalido')
+         self.sacar(valor)
+         conta_destino.depositar(valor)
+         return f'Transferencia efetuada com sucesso.'
+    
+    def extrato(self):
+         for item in self.__historico:
+              print(f" data:{item['data']} tipo: {item['tipo']} saldo: {item['saldo']}")
+
+    def __str__(self):
+      return f"Conta(titular={self.titular}, agencia={self.agencia}, saldo={self.saldo})"
