@@ -36,6 +36,17 @@ class ContaBancaria:
     def __init__(self,titular,agencia,saldo,historico):
         self.titular=titular
         self.agencia=agencia
-        self._ContaBancaria__saldo=saldo
+        self.__saldo=saldo
         self._historico=dict(historico)
 
+    @property
+    def saldo(self):
+        return self.__saldo
+    
+    def depositar(self,valor):
+        if valor<=0:
+            raise ValueError('Valor invalido')
+        self.__saldo+=valor
+        return f'deposito efetuado com sucesso.'
+
+    
