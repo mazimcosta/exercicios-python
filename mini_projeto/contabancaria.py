@@ -49,4 +49,39 @@ class ContaBancaria:
         self.__saldo+=valor
         return f'deposito efetuado com sucesso.'
 
+    def sacar(self,valor):
+        if valor>self.__saldo:
+            raise ValueError('Saldo insuficiente')
+        elif valor<=0:
+            raise ValueError('Valor invalido')
+        self.__saldo-=valor
+        return f'Saque efetuado com sucesso.'
+    
+    def registrar_historico(self,saldo,deposito=None,saque=None,transferencia=None):
+        hora=datetime.now()
+        if deposito:
+            return self.historico.update({hora:{'deposito':deposito,'saldo':saldo}})
+        if saque:
+            return self.historico.update({hora:{'saque':saque,'saldo':saldo}})
+        if transferencia:
+            return self.historico.update({hora:{'transferencia':transferencia,'saldo':saldo}})
+    
+    def transferir(self,valor,conta_destino):
+        if valor>self.__saldo:
+            raise ValueError('Saldo insuficiente')
+        if valor<=0:
+            raise ValueError('Valor invalido')
+        self.sacar(valor)
+        self.registrar_historico(transferencia=valor,saldo=self.__saldo)
+        conta_destino.depositar(valor)
+        conta_destino.registrar_historico(transferencia=valor,saldo=conta_destino.__saldo)
+        return f'Transferencia efetuada com sucesso'
+    
+    def extrato(self):
+        for data,dados in self._historico:
+            print(f'data:{data} transação:{dados}')
+
+    def __str__(self):
+        return f'Conta(titular:{self.titular} agencia:{self.agencia} saldo{self.saldo})'
+    
     
