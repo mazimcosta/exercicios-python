@@ -30,23 +30,41 @@ RESTRIÇÕES:
 """
 # SUA SOLUÇÃO:
 from datetime import datetime
-from servicos import registrar_historico
+
 class ContaBancaria:
 
-    def __init__(self,titular,agencia,saldo,historico):
+    def __init__(self,titular,agencia,saldo):
+        
+        if saldo<0:
+            raise ValueError('Saldo inicial não pode ser negativo')
+        
         self.titular=titular
         self.agencia=agencia
         self.__saldo=saldo
-        self._historico=dict(historico)
+        self._historico=[]
 
     @property
     def saldo(self):
         return self.__saldo
     
+    @saldo.setter
+    def saldo(self,valor):
+        self.saldo=valor
+    
+    def registrar_historico(self,tipo,valor):
+        self._historico.append(
+            {'data':datetime.now(),
+           'tipo':tipo,
+             'valor':valor,
+               'saldo':self.__saldo  }
+        )
+
+        
     def depositar(self,valor):
         if valor<=0:
             raise ValueError('Valor invalido')
         self.__saldo+=valor
+        self.registrar_historico(tipo='deposito',valor=valor)
         return f'deposito efetuado com sucesso.'
 
     def sacar(self,valor):
@@ -55,33 +73,30 @@ class ContaBancaria:
         elif valor<=0:
             raise ValueError('Valor invalido')
         self.__saldo-=valor
+        self.registrar_historico(tipo='saque',valor=valor)
         return f'Saque efetuado com sucesso.'
     
-    def registrar_historico(self,saldo,deposito=None,saque=None,transferencia=None):
-        hora=datetime.now()
-        if deposito:
-            return self.historico.update({hora:{'deposito':deposito,'saldo':saldo}})
-        if saque:
-            return self.historico.update({hora:{'saque':saque,'saldo':saldo}})
-        if transferencia:
-            return self.historico.update({hora:{'transferencia':transferencia,'saldo':saldo}})
-    
-    def transferir(self,valor,conta_destino):
-        if valor>self.__saldo:
-            raise ValueError('Saldo insuficiente')
-        if valor<=0:
-            raise ValueError('Valor invalido')
-        self.sacar(valor)
-        self.registrar_historico(transferencia=valor,saldo=self.__saldo)
-        conta_destino.depositar(valor)
-        conta_destino.registrar_historico(transferencia=valor,saldo=conta_destino.__saldo)
-        return f'Transferencia efetuada com sucesso'
-    
-    def extrato(self):
-        for data,dados in self._historico:
-            print(f'data:{data} transação:{dados}')
 
-    def __str__(self):
+    def transferir(self,valor,conta_destino):
+      if valor> self.__saldo:
+          raise ValueError('Saldo insuficiente')
+      elif valor<=0:
+          raise ValueError('Valor invalido')
+      self.__saldo-=valor
+      self.registrar_historico(tipo='transferencia',valor=valor)
+      conta_destino.saldo+=valor
+      conta_destino.registrar_historico(tipo='transferencia',valor=valor)
+
+
+
+    def extrato(self):
+      for item in self._historico:
+          print(item)
+
+
+
+
+      def __str__(self):
         return f'Conta(titular:{self.titular} agencia:{self.agencia} saldo{self.saldo})'
     
     
