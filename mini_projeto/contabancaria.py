@@ -41,62 +41,40 @@ class ContaBancaria:
         self.titular=titular
         self.agencia=agencia
         self.__saldo=saldo
-        self._historico=[]
+        self.__historico=[]
 
     @property
     def saldo(self):
         return self.__saldo
-    
     @saldo.setter
-    def saldo(self,valor):
-        self.saldo=valor
     
-    def registrar_historico(self,tipo,valor):
-        self._historico.append(
-            {'data':datetime.now(),
-           'tipo':tipo,
-             'valor':valor,
-               'saldo':self.__saldo  }
-        )
+    def saldo(self,valor):
+        self.__saldo=valor
+    
 
-        
+def __registrar_historico(self,tipo,valor):
+    self.__historico.append({
+        'data':datetime.now(),
+        'tipo':tipo,
+        'valor':valor,
+        'saldo':self.__saldo
+
+    })
+
+
+
     def depositar(self,valor):
         if valor<=0:
             raise ValueError('Valor invalido')
         self.__saldo+=valor
-        self.registrar_historico(tipo='deposito',valor=valor)
-        return f'deposito efetuado com sucesso.'
+        self.__registrar_historico('deposito',valor)
+        return f' Deposito realizado com sucesso'
 
     def sacar(self,valor):
         if valor>self.__saldo:
             raise ValueError('Saldo insuficiente')
-        elif valor<=0:
+        if valor<=0:
             raise ValueError('Valor invalido')
         self.__saldo-=valor
-        self.registrar_historico(tipo='saque',valor=valor)
-        return f'Saque efetuado com sucesso.'
-    
-
-    def transferir(self,valor,conta_destino):
-      if valor> self.__saldo:
-          raise ValueError('Saldo insuficiente')
-      elif valor<=0:
-          raise ValueError('Valor invalido')
-      self.__saldo-=valor
-      self.registrar_historico(tipo='transferencia',valor=valor)
-      conta_destino.saldo+=valor
-      conta_destino.registrar_historico(tipo='transferencia',valor=valor)
-
-
-
-    def extrato(self):
-      for item in self._historico:
-          print(item)
-
-
-
-
-      def __str__(self):
-        return f'Conta(titular:{self.titular} agencia:{self.agencia} saldo{self.saldo})'
-    
-    
+        self.__registrar_historico('saque',valor)
+        return 'Saque efetuado com sucesso'        
