@@ -17,23 +17,38 @@ class Pedido:
 
     def adicionar_produto(self,produto,quantidade):
         if self.status!='criado':
-            return f' Nao e possivel fazer outro pedido'
+            raise ValueError('Nao e possivel fazer outro pedido')
         if produto not in itens:
-            return f'Produto nao encontrado'
+            raise ValueError( f'Produto nao encontrado')
         if not isinstance(quantidade,int):
-             return f'Digite um numero valido'
+            raise ValueError('Valor invalido')
         
         if quantidade<=0:
-            return f'Quantidade invalida'
+            raise ValueError('Quantidade invalida')
         if quantidade>produto.estoque:
-            return f'Quantidade indisponivel'
-        
-        produto.baixar_estoque(quantidade)
+            raise ValueError('Quantidade indisponivel')
 
         self.produtos.append({
-            produto.nome:{
+            produto:{'nome':produto.nome,
                 'preco':produto.preco,
                 'quantidade':quantidade,
                 'subtotal':round(float(produto.preco * quantidade),2)
             }
         })
+
+    def remover_produto(self,nome_produto):
+        for produto in self.produtos:
+            if nome_produto==produto['nome']:
+                quantidade=produto['quantidade']
+                produto.devolver_estoque(quantidade)
+                self.produtos.remove(produto)
+                return f'Produto removido com sucesso'
+            else:
+                raise ValueError('Produto não encontrado')
+        return
+    
+    def calcular_total(self):
+        valor=0
+        for produto in self.produtos:
+            valor+=produto['preco']
+        return f'total:{valor:.2f}'
