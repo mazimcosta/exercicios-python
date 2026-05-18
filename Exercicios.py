@@ -1,103 +1,12 @@
 
 # Exercícios a resolver 
 # ---------------+++++++
-#13
 #14
 #18
 #20
 #22
 #25
 
-
-# =============================================================================
-# EXERCÍCIO 11 | Classe básica
-# Nível: Médio | Contexto: Sistema de produto
-# Status: [ ] Pendente | [ ] Enviado | [ ] Revisado | [ ] Corrigido
-# =============================================================================
-"""
-CONTEXTO:
-E-commerce precisa de uma classe para representar produtos.
-
-TAREFA:
-Crie a classe Produto com:
-- __init__(self, codigo, nome, preco, estoque)
-- aplicar_desconto(percentual: float) → altera o preço
-- adicionar_estoque(qtd: int)
-- remover_estoque(qtd: int) → raise ValueError se insuficiente
-- esta_disponivel() -> bool
-- valor_em_estoque() -> float  (preco * estoque)
-- __str__() → representação legível
-- __repr__() → representação técnica
-
-RESTRIÇÕES:
-- Validar preco e estoque no __init__ (não negativos)
-- raise ValueError com mensagem clara
-- @property para preco (não permite valor negativo via setter)
-"""
-# SUA SOLUÇÃO:
-
-
-# =============================================================================
-# EXERCÍCIO 12 | Classe com métodos especiais
-# Nível: Médio-Difícil | Contexto: Carrinho de compras
-# Status: [ ] Pendente | [ ] Enviado | [ ] Revisado | [ ] Corrigido
-# =============================================================================
-"""
-CONTEXTO:
-Sistema de e-commerce precisa de um carrinho
-que usa a classe Produto do exercício anterior.
-
-TAREFA:
-Crie a classe Carrinho com:
-- __init__(self, cliente: str)
-- adicionar(produto: Produto, quantidade: int)
-  → não adiciona se sem estoque
-- remover(codigo_produto: str) -> bool
-- calcular_subtotal() -> float
-- aplicar_cupom(desconto: float) → desconto no total
-- finalizar() -> dict  → deduz estoque, retorna resumo
-- __str__() → lista formatada dos itens
-- __len__() → quantidade de itens diferentes
-
-RESTRIÇÕES:
-- Usar a classe Produto do Ex.11
-- try/except em remover para produto não encontrado
-- Não permitir finalizar carrinho vazio
-"""
-# SUA SOLUÇÃO:
-
-
-# =============================================================================
-# EXERCÍCIO 13 | Encapsulamento
-# Nível: Médio-Difícil | Contexto: Conta bancária
-# Status: [ ] Pendente | [ ] Enviado | [ ] Revisado | [ ] Corrigido
-# =============================================================================
-"""
-CONTEXTO:
-Sistema bancário com regras rígidas de acesso aos dados.
-
-TAREFA:
-Crie a classe ContaBancaria com encapsulamento real:
-- __saldo privado (name mangling)
-- __historico privado
-- titular e agencia públicos
-- @property saldo → só leitura
-- depositar(valor) → valida valor positivo
-- sacar(valor) → valida saldo suficiente
-- transferir(valor, conta_destino: ContaBancaria)
-- extrato() → imprime histórico formatado
-- __str__() → resumo da conta
-
-FORMATO DO HISTÓRICO:
-[2024-03-01 08:22] DEPÓSITO    +R$1.500,00 | Saldo: R$1.500,00
-[2024-03-01 08:23] SAQUE       -R$  200,00 | Saldo: R$1.300,00
-
-RESTRIÇÕES:
-- __saldo nunca acessível diretamente de fora
-- datetime para timestamp
-- raise ValueError com mensagem clara em operações inválidas
-"""
-# SUA SOLUÇÃO:
 
 
 # =============================================================================
