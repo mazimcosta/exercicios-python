@@ -1,5 +1,5 @@
 #Criando a classe Departamento
-from RH import Funcionario
+from sistema_pedidos.RH import Funcionario
 class  Departamento:
 
     def __init__(self,nome):
