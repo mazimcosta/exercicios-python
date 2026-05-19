@@ -38,20 +38,30 @@ class Funcionario:
     def __init__(self,nome,cargo,salario,anos_empresa):
         if not isinstance(nome,str):
             raise ValueError('Nome invalido')
-        elif not nome.strip().replace(' ','').isalpha():
+        nome =nome.strip()
+        if not nome.replace(' ','').isalpha():
             raise ValueError('Nome invalido')
-        elif not isinstance(cargo,str):
+        
+        if not isinstance(cargo,str):
             raise ValueError('Cargo invalido')
-        elif not cargo.strip().replace(' ','').isalpha():
+        
+        cargo=cargo.strip()
+
+        if not cargo.replace(' ','').isalpha():
             raise ValueError('Cargo invalido')
-        elif not isinstance(salario,(int,float)):
+        
+        if not isinstance(salario,(int,float)):
             raise ValueError('Salario invalido')
-        elif salario<=0:
+        
+        if salario<=0:
             raise ValueError('Salario invalido')
-        elif not isinstance(anos_empresa,int):
+        
+        if not isinstance(anos_empresa,int):
             raise ValueError('Anos de empresa invalido')
-        elif anos_empresa<0:
-            raise('Anos de empresa nao pode ser negqtivo')
+        
+        if anos_empresa<0:
+            raise ValueError('Anos de empresa invalido')
+        
         self.nome=nome
         self.cargo=cargo
         self.salario=salario
