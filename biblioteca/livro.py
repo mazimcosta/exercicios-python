@@ -4,7 +4,7 @@
 class Livro:
 
 
-    def  __init__(self,titulo,autor,isbn,disponivel):
+    def  __init__(self,titulo,autor,isbn):
 
         if not isinstance(titulo,str):
             raise ValueError('Titulo invalido')
@@ -20,7 +20,7 @@ class Livro:
         autor=autor.strip()
 
 
-        if not autor.replace(' ','').isalpha():
+        if not autor.replace(' ',''):
             raise ValueError('Autor invalido')
         
 
@@ -32,10 +32,35 @@ class Livro:
         if not isbn.replace(' ',''):
             raise ValueError('ISBN invalido')
         
-        if disponivel not in [True,False]:
-            raise ValueError('Disponibilidade invalida')
+        
+        
         
         self.titulo=titulo
         self.autor=autor
         self.isbn=isbn
-        self.disponivel=disponivel
+        self.__disponivel=True
+
+
+    @property
+    def disponivel(self):
+        return self.__disponivel
+    
+
+    def emprestar(self):
+        if not self.disponivel:
+            raise ValueError('Livro indisponivel')
+        
+        self.__disponivel=False
+        return f'Emprestimo realizado com sucesso'
+    
+    def devolver(self):
+        if self.disponivel:
+            raise ValueError('Livro ja disponivel')
+        
+        self.__disponivel=True
+        return 'Devolução feita com sucesso'
+    
+    def __str__(self):
+        return f'Livro: titulo={self.titulo} autor={self.autor} ISBN={self.isbn}'
+    
+    
