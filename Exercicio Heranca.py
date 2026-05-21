@@ -81,12 +81,23 @@ class  Notificacao:
         return True
     
     def enviar(self):
-       try:
-           self.validar()
-           mensagem=self.formatar()
-           return mensagem
-       except:
-           return {'erro':'Mensagem invalida'}    
+        try:
+            if not self.validar():
+                raise ValueError("Dados invalidos")
+
+            mensagem = self.formatar()
+
+            return {
+                "status": "enviado",
+                "conteudo": mensagem
+            }
+
+        except Exception as error:
+            return {
+                "status": "erro",
+                "erro": str(error)
+            }
+        
    
     def __str__(self):
         return f'Notificação: destinatario={self.destinatario} mensagem={self.mensagem} prioridade={self.prioridade}'
@@ -126,7 +137,7 @@ class SMSNotificacao(Notificacao):
 
     def formatar(self):
         if len(self.mensagem)>160:
-            self.mensagem=self.mensagem[:161]
+             self.mensagem= self.mensagem[:160]
 
         return{
             'destinario':self.destinatario,
@@ -137,7 +148,11 @@ class SMSNotificacao(Notificacao):
     def validar(self):
         if len(self.destinatario)!=11:
             return False
-        return self.validar()
+        
+        if not self.destinatario.isdigit():
+            return False
+                            
+        return super().validar()
     
 
 
